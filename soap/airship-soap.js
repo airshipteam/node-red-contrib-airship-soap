@@ -16,12 +16,45 @@ module.exports = function (RED) {
 
         	switch(this.method) {
 			  case 'createContact':
+			  case 'updateContact':
 			  case 'getContact':
+			  case 'getContactEmail':
+			  case 'lookupContactByLastname':
+			  case 'lookupContactByUDF':
+			  case 'unsubscribeContactGroup':
+			  case 'getUDFValue':
+			  case 'setUDFValue':
+			  case 'getInteractionsInMonitoredGroup':
+			  case 'getUpdatedContacts':
+			  case 'setContactSocial':
+			  case 'getContactSocial':
+			  case 'addContactNote':
+			  case 'getContactNotes':
+			  case 'setContactPhoto':
+			  case 'getContactPhoto':
+			  case 'unsubscribeContactUnits':
+			  case 'getCreatedContacts':
+			  case 'getPreferredMethods':
+			  case 'updatePreferredMethods':
+			  case 'getContactStatus':
+			  case 'getContactsCreatedUpdated':
+			  case 'getContactsCreatedUpdatedTime':
+			  case 'contactValidation':
+			  case 'getContactConsent':
+			  case 'updateContactConsent':
+			  case 'getContactByUID':
+			  case 'getContactConfig':
 			    return 'https://secure.airship.co.uk/SOAP/V3/Contact.wsdl';
 			    break;
 			  case 'createBooking':
-			  case 'getBooking':
 			  case 'updateBooking':
+			  case 'getBooking':
+			  case 'getBookings':
+			  case 'getBookingsCount':
+			  case 'getBookingNotes':
+			  case 'getBookingTypes':
+			  case 'getBookingSources':
+			  case 'createBookingEnquiry':
 			    return 'https://secure.airship.co.uk/SOAP/V3/Bookings.wsdl';
 			    break;
 			}

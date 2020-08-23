@@ -26,11 +26,51 @@
     <div class="form-row">
         <label for="node-input-method"><i class="fa fa-tag"></i> Method</label>
         <select id="node-input-method">
-            <option value="createContact">createContact</option>
-            <option value="getContact">getContact</option>
-            <option value="createBooking">createBooking</option>
-            <option value="getBooking">getBooking</option>
-            <option value="updateBooking">updateBooking</option>
+            <option value="">Select Method</option>
+            <optgroup label="Contact API">
+
+                <option value="createContact">createContact</option>
+                <option value="updateContact">updateContact</option>
+                <option value="getContact">getContact</option>
+                <option value="getContactEmail">getContactEmail</option>
+                <option value="lookupContactByLastname">lookupContactByLastname</option>
+                <option value="lookupContactByUDF">lookupContactByUDF</option>
+                <option value="unsubscribeContactGroup">unsubscribeContactGroup</option>
+                <option value="getUDFValue">getUDFValue</option>
+                <option value="setUDFValue">setUDFValue</option>
+                <option value="getInteractionsInMonitoredGroup">getInteractionsInMonitoredGroup</option>
+                <option value="getUpdatedContacts">getUpdatedContacts</option>
+                <option value="setContactSocial">setContactSocial</option>
+                <option value="getContactSocial">getContactSocial</option>
+                <option value="addContactNote">addContactNote</option>
+                <option value="getContactNotes">getContactNotes</option>
+                <option value="setContactPhoto">setContactPhoto</option>
+                <option value="getContactPhoto">getContactPhoto</option>
+                <option value="unsubscribeContactUnits">unsubscribeContactUnits</option>
+                <option value="getCreatedContacts">getCreatedContacts</option>
+                <option value="getPreferredMethods">getPreferredMethods</option>
+                <option value="updatePreferredMethods">updatePreferredMethods</option>
+                <option value="getContactStatus">getContactStatus</option>
+                <option value="getContactsCreatedUpdated">getContactsCreatedUpdated</option>
+                <option value="getContactsCreatedUpdatedTime">getContactsCreatedUpdatedTime</option>
+                <option value="contactValidation">contactValidation</option>
+                <option value="getContactConsent">getContactConsent</option>
+                <option value="updateContactConsent">updateContactConsent</option>
+                <option value="getContactByUID">getContactByUID</option>
+                <option value="getContactConfig">getContactConfig</option>
+            </optgroup>
+            <optgroup label="Bookings API">
+
+                <option value="createBooking">createBooking</option>
+                <option value="updateBooking">updateBooking</option>
+                <option value="getBooking">getBooking</option>
+                <option value="getBookings">getBookings</option>
+                <option value="getBookingsCount">getBookingsCount</option>
+                <option value="getBookingNotes">getBookingNotes</option>
+                <option value="getBookingTypes">getBookingTypes</option>
+                <option value="getBookingSources">getBookingSources</option>
+                <option value="createBookingEnquiry">createBookingEnquiry</option>
+            <optgroup label="Bookings API">
         </select>
     </div>
    
@@ -38,13 +78,14 @@
 
 <script type="text/x-red" data-help-name="Airship SOAP">
     <p>Node-red nodesthat allow users to send SOAP request to Airship SOAP methods.</p>
-    <h4>Input msg.options you can add msg.options to add SOAP WSDL options to the request (see node soap)</h4>
 
 
     <h3>Input msg</h3>
+        
     <pre>
-        method:'getContact',
-        payload:{
+        msg.options, // you can add msg.options to add SOAP WSDL options to the request (see node soap)
+        method:'getContact', // can either be passed in here, or selected in the dropdown of the node
+        payload:{ // SOAP payload as per the docs
             username:'',
             password:'',
             contactID:1234
@@ -53,7 +94,7 @@
 
     <h3>Outputs:</h3>
     <ul>
-        <li>1. contact object</li>
+        <li>1. success payload from API (see docs)</li>
         <li>2. error</li>
     </ul>
 </script>
