@@ -1,0 +1,59 @@
+<script type="text/javascript">
+    RED.nodes.registerType('Airship SOAP', {
+        category: "Airship SOAP",
+        icon: "icons/airship.svg",
+        color: '#F8665A',
+        inputs: 1,
+        outputs: 2,
+        outputLabels:['success','error'],
+        defaults: {
+            name: { value: "" },
+            method: { value: "" }
+        },
+        label: function () {
+            return this.name || "Airship SOAP"
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="Airship SOAP">
+    
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-method"><i class="fa fa-tag"></i> Method</label>
+        <select id="node-input-method">
+            <option value="createContact">createContact</option>
+            <option value="getContact">getContact</option>
+            <option value="createBooking">createBooking</option>
+            <option value="getBooking">getBooking</option>
+            <option value="updateBooking">updateBooking</option>
+        </select>
+    </div>
+   
+</script>
+
+<script type="text/x-red" data-help-name="Airship SOAP">
+    <p>Node-red nodesthat allow users to send SOAP request to Airship SOAP methods.</p>
+    <h4>Input msg.options you can add msg.options to add SOAP WSDL options to the request (see node soap)</h4>
+
+
+    <h3>Input msg</h3>
+    <pre>
+        method:'getContact',
+        payload:{
+            username:'',
+            password:'',
+            contactID:1234
+        }
+    </pre>
+
+    <h3>Outputs:</h3>
+    <ul>
+        <li>1. contact object</li>
+        <li>2. error</li>
+    </ul>
+</script>
