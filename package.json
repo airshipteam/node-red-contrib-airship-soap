@@ -4,11 +4,11 @@
   "description": "Airship SOAP API node red library",
   "repository": {
     "type": "git",
-    "url": "https://github.com/airshipteam/node-red-contrib-airship"
+    "url": "https://github.com/airshipteam/node-red-contrib-airship-soap"
   },
-  "homepage": "https://github.com/airshipteam/node-red-contrib-airship",
+  "homepage": "https://github.com/airshipteam/node-red-contrib-airship-soap",
   "bugs": {
-    "url": "https://github.com/airshipteam/node-red-contrib-airship"
+    "url": "https://github.com/airshipteam/node-red-contrib-airship-soap"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

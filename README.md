@@ -1,4 +1,4 @@
-# node-red-contrib-airship
+# node-red-contrib-airship-soap
 
 Node-RED nodes for Airship SOAP API
 
