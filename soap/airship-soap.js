@@ -9,6 +9,7 @@ module.exports = function (RED) {
 		this.wsdl    = 'https://secure.airship.co.uk/SOAP/V3/Contact.wsdl';
 		this.method  = n.method;
 		this.payload = n.payload;
+		this.msg = {};
         this.status({});
 
 
@@ -73,20 +74,21 @@ module.exports = function (RED) {
         };
 
         /**
-		 * Logs an error message
-		 * @param  {[string]} msg [error message]
+		 * Outputs success
+		 * @param  {[string]} msg [success message]
 		 */
-        this.showerror = (payload) => {
-        	this.send([null,{payload:payload}]);
+        this.showsuccess = (payload) => {
+        	this.msg.payload = payload;
+        	this.send([this.msg,null]);
         };
-
 
         /**
 		 * Logs an error message
 		 * @param  {[string]} msg [error message]
 		 */
-        this.showsuccess = (payload) => {
-        	this.send([{payload:payload},null]);
+        this.showerror = (payload) => {
+        	this.msg.payload = payload;
+        	this.send([null,this.msg]);
         };
 
 
@@ -103,6 +105,8 @@ module.exports = function (RED) {
 
 
         this.on('input',  (msg) => {
+
+        	this.msg = msg;
 
         	this.showstatus("yellow","dot","Making call");
 
