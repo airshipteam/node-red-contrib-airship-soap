@@ -9,13 +9,12 @@ module.exports = function (RED) {
 		this.wsdl    = 'https://secure.airship.co.uk/SOAP/V3/Contact.wsdl';
 		this.method  = n.method;
 		this.payload = n.payload;
-		this.msg = {};
         this.status({});
 
 
-        this.getWSDL = () => {
+        this.getWSDL = (method) => {
 
-        	switch(this.method) {
+        	switch(method) {
 			  case 'createContact':
 			  case 'updateContact':
 			  case 'getContact':
@@ -77,18 +76,18 @@ module.exports = function (RED) {
 		 * Outputs success
 		 * @param  {[string]} msg [success message]
 		 */
-        this.showsuccess = (payload) => {
-        	this.msg.payload = payload;
-        	this.send([this.msg,null]);
+        this.showsuccess = (msg,payload) => {
+        	msg.payload = payload;
+        	this.send([msg,null]);
         };
 
         /**
 		 * Logs an error message
 		 * @param  {[string]} msg [error message]
 		 */
-        this.showerror = (payload) => {
-        	this.msg.payload = payload;
-        	this.send([null,this.msg]);
+        this.showerror = (msg,payload) => {
+        	msg.payload = payload;
+        	this.send([null,msg]);
         };
 
 
@@ -106,20 +105,18 @@ module.exports = function (RED) {
 
         this.on('input',  (msg) => {
 
-        	this.msg = msg;
-
         	this.showstatus("yellow","dot","Making call");
 
-        	const wsdl = this.getWSDL();
-        	const method = msg.method ? msg.method : this.method;
+        	let method = msg.method ? msg.method : this.method;
+        	let wsdl = this.getWSDL(method);
 
-	        let res = airshipsoap.call(wsdl, this.method, msg.payload, msg.options);
+	        let res = airshipsoap.call(wsdl, method, msg.payload, msg.options);
 	        res.then((res)=>{
 	        	this.showstatus("green","dot","Success");
-	         	this.showsuccess(res);
+	         	this.showsuccess(msg,res);
 	     	}).catch((err)=>{
 	        	this.showstatus("red","dot","Error");
-	     		this.showerror(err);
+	     		this.showerror(msg,err);
 	     	}).finally(()=>{
 	     	});
 
