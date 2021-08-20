@@ -57,6 +57,17 @@ module.exports = function (RED) {
 			  case 'createBookingEnquiry':
 			    return 'https://secure.airship.co.uk/SOAP/V3/Bookings.wsdl';
 			    break;
+			  case 'getUnit':
+			  case 'createUnit':
+				return 'https://secure.airship.co.uk/SOAP/V3/UnitManager.wsdl';
+				break;
+			  case 'addUniqueCodeGroup':
+			  case 'addUniqueCodeContact':
+			  case 'addUniqueCodeGroupCodes':
+			  case 'addUniqueCodeContactHistory':
+			  case 'redeemUniqueCode':
+				return "https://secure.airship.co.uk/SOAP/V3/UniqueCodes.wsdl";
+				break;
 			}
 
         },
